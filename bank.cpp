@@ -3,19 +3,40 @@
 
 void showBalance(balance){
 
-  std::cout << "Your account balance is: " << std:endl;
+  std::cout << "Your account balance is: $" << std::setprecision(2) << std::fixed << balance << std:endl;
 }
 
-void depositMoney(){
-  double money;
+double depositMoney(){
+  double money {0};
   std::cout << " Enter the amount you would like to deposit: " << std::endl;
   std::cin >> money;
 
-  std::cout << " Your account balance is: " << money << std::cout;
+  if (money > 0){
+    return money;
+  }
+  else{
+    std::cout << " That's not a valid amount!! " << std::endl;
+  }
+  
 }
 
-void withdrawMoney(){
-  double money;
+double withdrawMoney(){
+  double money {0};
+
+  std::cout << "Enter the amount you would like to withdraw: ";
+  std::cin >> money;
+
+  if (money > balance){
+    std::cout << "Insufficient Funds." << std::endl;
+    return 0;
+  }
+  else if (money < 0) {
+    std::cout << "That's not a valid amount." << std::endl;
+    return 0;
+  }
+  else{
+    return money;
+  }
   
 }
 
@@ -49,9 +70,8 @@ int main(){
                break;
       default : std::cout << " Invalid Option !!! " << std::endl;
                break;
-  } while {
-    option != 4;
-  }
+  } while (option != 4);
+  
 
   return 0;
 }
