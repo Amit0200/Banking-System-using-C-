@@ -1,14 +1,15 @@
-#inlcude <iostream>
+#include <iostream>
 #include <iomanip>
 
-void showBalance(balance){
 
-  std::cout << "Your account balance is: $" << std::setprecision(2) << std::fixed << balance << std:endl;
+void showBalance(double balance){
+
+  std::cout << "Your account balance is: $" << std::setprecision(2) << std::fixed << balance << std::endl;
 }
 
 double depositMoney(){
   double money {0};
-  std::cout << " Enter the amount you would like to deposit: " << std::endl;
+  std::cout << " Enter the amount you would like to deposit: ";
   std::cin >> money;
 
   if (money > 0){
@@ -16,11 +17,11 @@ double depositMoney(){
   }
   else{
     std::cout << " That's not a valid amount!! " << std::endl;
+    return 0;
   }
-  
 }
 
-double withdrawMoney(){
+double withdrawMoney(double balance){
   double money {0};
 
   std::cout << "Enter the amount you would like to withdraw: ";
@@ -42,8 +43,8 @@ double withdrawMoney(){
 
 int main(){
 
-  double balane {0};
-  int option {0};
+  double balance = 0;
+  int option = 0;
 
   do{
     std::cout << " ^ Welcome to ABC banking system ^ " << std::endl << "Choose your option: " << std::endl;
@@ -57,21 +58,21 @@ int main(){
     std::cin.clear();
     fflush(stdin);
 
-    switch(option);
+    switch(option){
       case 1 : showBalance(balance);
                break;
       case 2 : balance += depositMoney();
                showBalance(balance);
                break;
-      case 3 : balance -= withdrawMoney();
+      case 3 : balance -= withdrawMoney(balance);
                showBalance(balance);
                break;
       case 4 : std::cout << " Thanks for visiting our bank!!" << std::endl;
                break;
-      default : std::cout << " Invalid Option !!! " << std::endl;
+      default: std::cout << " Invalid Option !!! " << std::endl;
                break;
+    }
   } while (option != 4);
-  
-
-  return 0;
+    
+return 0;
 }
